@@ -35,3 +35,14 @@ export async function selectAllMatutino() {
   const matutino = await db.all(sql);
   return matutino;
 }
+
+export async function selectByIdMatutino(id) {
+  const db = await openDb();
+  const sql = `
+    SELECT disciplina, dia_da_semana, sala, professor
+    FROM Matutino
+    WHERE id = ?
+  `;
+  const matutino = await db.get(sql, id);
+  return matutino;
+}

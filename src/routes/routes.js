@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMatutino, insertMatutino, selectAllMatutino } 
+import { createMatutino, insertMatutino, selectAllMatutino, selectByIdMatutino } 
   from '../controllers/matutino.js';
 
 const router = Router();
@@ -20,6 +20,14 @@ router.post('/matutino', (req, res) => {
 
 router.get('/matutino', async (req, res) => {
   const matutino = await selectAllMatutino();
+  res
+    .status(201)
+    .json(matutino);
+});
+
+router.get('/matutino/:id', async (req, res) => {
+  const id = req.params.id;
+  const matutino = await selectByIdMatutino(id);
   res
     .status(201)
     .json(matutino);
