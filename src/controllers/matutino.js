@@ -46,3 +46,13 @@ export async function selectByIdMatutino(id) {
   const matutino = await db.get(sql, id);
   return matutino;
 }
+
+export async function updateMatutino(id, matutino) {
+  const db = await openDb();
+  const sql = `
+    UPDATE Matutino
+    SET disciplina = ?, dia_da_semana = ?, sala = ?, professor = ?
+    WHERE id = ?
+  `;
+  await db.run(sql, [matutino.disciplina, matutino.diaDaSemana, matutino.sala, matutino.professor, id]);
+}
