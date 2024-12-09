@@ -13,3 +13,14 @@ export async function createMatutino() {
   `;
   await db.exec(sql);
 }
+
+export async function insertMatutino(matutino) {
+  const db = await openDb();
+  const sql = `
+    INSERT INTO Matutino 
+    (disciplina, dia_da_semana, sala, professor) 
+    VALUES 
+    (?, ?, ?, ?) 
+  `;
+  await db.run(sql, [matutino.disciplina, matutino.diaDaSemana, matutino.sala, matutino.professor]);
+}
