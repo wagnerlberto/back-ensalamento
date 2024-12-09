@@ -18,7 +18,7 @@ router.post('/matutino', (req, res) => {
     .send('Matutino created');
 });
 
-router.get('/matutino', async (req, res) => {
+router.get('/ensalamentoM', async (req, res) => {
   const matutino = await selectAllMatutino();
   res
     .status(201)
