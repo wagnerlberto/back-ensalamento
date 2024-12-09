@@ -56,3 +56,12 @@ export async function updateMatutino(id, matutino) {
   `;
   await db.run(sql, [matutino.disciplina, matutino.diaDaSemana, matutino.sala, matutino.professor, id]);
 }
+
+export async function deleteMatutino(id) {
+  const db = await openDb();
+  const sql = `
+    DELETE FROM Matutino
+    WHERE id = ?
+  `;
+  await db.run(sql, id);
+}

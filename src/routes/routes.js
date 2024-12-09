@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMatutino, insertMatutino, selectAllMatutino, selectByIdMatutino, updateMatutino } 
+import { createMatutino, insertMatutino, selectAllMatutino, selectByIdMatutino, updateMatutino, deleteMatutino } 
   from '../controllers/matutino.js';
 
 const router = Router();
@@ -40,6 +40,14 @@ router.put('/matutino/:id', async (req, res) => {
   res
     .status(201)
     .send('Matutino updated');
+});
+
+router.delete('/matutino/:id', async (req, res) => {
+  const id = req.params.id;
+  await deleteMatutino(id);
+  res
+    .status(201)
+    .send('Matutino deleted');
 });
 
 export default router;
