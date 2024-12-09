@@ -24,3 +24,14 @@ export async function insertMatutino(matutino) {
   `;
   await db.run(sql, [matutino.disciplina, matutino.diaDaSemana, matutino.sala, matutino.professor]);
 }
+
+export async function selectAllMatutino() {
+  const db = await openDb();
+  const sql = `
+    SELECT disciplina, dia_da_semana, sala, professor 
+    FROM Matutino 
+    ORDER BY disciplina ASC, dia_da_semana ASC, sala ASC 
+  `;
+  const matutino = await db.all(sql);
+  return matutino;
+}

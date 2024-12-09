@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { createMatutino, insertMatutino } from '../controllers/matutino.js';
+import { createMatutino, insertMatutino, selectAllMatutino } 
+  from '../controllers/matutino.js';
 
 const router = Router();
 
@@ -15,6 +16,13 @@ router.post('/matutino', (req, res) => {
   res
     .status(201)
     .send('Matutino created');
+});
+
+router.get('/matutino', async (req, res) => {
+  const matutino = await selectAllMatutino();
+  res
+    .status(201)
+    .json(matutino);
 });
 
 export default router;
