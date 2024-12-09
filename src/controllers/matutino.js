@@ -5,8 +5,10 @@ export async function createMatutino() {
   const sql = `
     CREATE TABLE IF NOT EXISTS Matutino (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT,
-      email TEXT
+      disciplina TEXT,
+      dia_da_semana TEXT,
+      sala TEXT,
+      professor TEXT
     )
   `;
   await db.exec(sql);
