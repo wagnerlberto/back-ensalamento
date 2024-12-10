@@ -10,8 +10,8 @@ const corsOptions = {
 
 const app = express();
 app.use(express.json());
-app.use(router);
 app.use(cors(corsOptions));
+app.use(router);
 
 const PORT = 3000;
 app.listen(PORT, () => {
