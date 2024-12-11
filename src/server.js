@@ -22,5 +22,5 @@ https.createServer({
   key: fs.readFileSync('src/SSL/code.key'),
   cert: fs.readFileSync('src/SSL/code.crt'),
 // Usar a porta 443 em produção
-}, app).listen(443, () => console.log('Server listening on port 443'));
-// }, app).listen(3001, () => console.log('Server listening on port 3001'));
+// }, app).listen(443, () => console.log('Server listening on port 443'));
+}, app).listen(3001, () => console.log('Server listening on port 3001'));

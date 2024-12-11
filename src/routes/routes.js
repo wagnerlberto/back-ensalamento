@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMatutino, insertMatutino, selectAllMatutino, selectByIdMatutino, updateMatutino, deleteMatutino } 
+import { createMatutino, insertMatutino, selectAllMatutino, selectByIdMatutino, selectFilteredMatutino, updateMatutino, deleteMatutino } 
   from '../controllers/matutino.js';
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post('/matutino', (req, res) => {
     .send('Matutino created');
 });
 
-router.get('/ensalamentoM', async (req, res) => {
+router.get('/matutino', async (req, res) => {
   const matutino = await selectAllMatutino();
   res
     .status(201)
@@ -28,6 +28,15 @@ router.get('/ensalamentoM', async (req, res) => {
 router.get('/matutino/:id', async (req, res) => {
   const id = req.params.id;
   const matutino = await selectByIdMatutino(id);
+  res
+    .status(201)
+    .json(matutino);
+});
+
+router.get('/ensalamentoM/:procurar', async (req, res) => {
+  const procurar = req.params.procurar;
+  console.log(procurar);
+  const matutino = await selectFilteredMatutino(procurar);
   res
     .status(201)
     .json(matutino);
