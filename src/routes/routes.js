@@ -35,7 +35,6 @@ router.get('/matutino/:id', async (req, res) => {
 
 router.get('/ensalamentoM/:procurar', async (req, res) => {
   const procurar = req.params.procurar;
-  console.log(procurar);
   const matutino = await selectFilteredMatutino(procurar);
   res
     .status(201)
