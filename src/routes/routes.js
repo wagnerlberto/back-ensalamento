@@ -11,11 +11,48 @@ router.get('/', (req, res) => {
 });
 
 router.post('/matutino', (req, res) => {
-  const matutino = req.body;
-  insertMatutino(matutino);
-  res
-    .status(201)
-    .send('Matutino created');
+  try{
+    const matutino = req.body;
+
+    // Validação básica dos dados
+    if (!matutino.disciplina) {
+      return res.status(400).json({ 
+        error: 'O campo disciplina é obrigatório.'
+      });
+    }
+
+    insertMatutino(matutino);
+
+    // Responder com os dados inseridos
+    res
+      .status(201)
+      .json({
+        message: 'Dados inseridos com sucesso'
+      });
+  }catch (error) {
+    console.error('Erro na inserção:', error);
+
+    // // Tratamento de erros específicos
+    // if (error.code === '23505') {
+    //   // Exemplo: erro de chave única
+    //   return res.status(409).json({ 
+    //     error: 'Já existe um registro similar',
+    //     detalhes: error.detail
+    //   });
+    // }
+
+    // Erro genérico do servidor
+    res.status(500).json({ 
+      error: 'Erro interno do servidor',
+      mensagem: error.message 
+    });
+  }
+    // const matutino = req.body;
+
+    // insertMatutino(matutino);
+    // res
+    //   .status(201)
+    //   .json(matutino);
 });
 
 router.get('/matutino', async (req, res) => {
