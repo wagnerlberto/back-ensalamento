@@ -47,12 +47,6 @@ router.post('/matutino', (req, res) => {
       mensagem: error.message 
     });
   }
-    // const matutino = req.body;
-
-    // insertMatutino(matutino);
-    // res
-    //   .status(201)
-    //   .json(matutino);
 });
 
 router.get('/matutino', async (req, res) => {
@@ -84,7 +78,9 @@ router.put('/matutino/:id', async (req, res) => {
   await updateMatutino(id, matutino);
   res
     .status(201)
-    .send('Matutino updated');
+    .json({
+      message: 'Dados alterados com sucesso'
+    });
 });
 
 router.delete('/matutino/:id', async (req, res) => {
@@ -92,7 +88,9 @@ router.delete('/matutino/:id', async (req, res) => {
   await deleteMatutino(id);
   res
     .status(201)
-    .send('Matutino deleted');
+    .json({
+      message: 'Dados excluídos com sucesso'
+    });
 });
 
 export default router;
