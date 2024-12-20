@@ -79,3 +79,11 @@ export async function deleteMatutino(id) {
   `;
   await db.run(sql, id);
 }
+
+export async function deleteMatutinoTodos() {
+  const db = await openDb();
+  const sql = `
+    DELETE FROM Matutino
+  `;
+  await db.run(sql);
+}
